@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban UI</title>
+    <link rel="stylesheet" href="estilos2.css">
+</head>
+<body>
+    <div class="container">
+        
+        <div class="kanban-head">
+            <strong class="kanban-head-title">Kanban UI</strong>
+        </div>
+
+        <div class="kanban-table">
+            <div class="kanban-block kanban-form">
+                <strong class="kanban-form-title">Tarea</strong>
+
+                <div class="container-inputs">
+                    <strong class="strong-input">Nombre Tarea:</strong>
+                    <input type="text" id="tarea.nombre" class="input-text">
+
+                    <strong class="strong-input">Descripción Tarea:</strong>
+                    <textarea id="tarea-descrpcion" class="textarea-text" rows="4"></textarea>
+
+                    <strong class="strong-input">Responsable Tarea:</strong>
+                    <input type="text" id="tarea-responsable" class="input-text">
+                    <strong class="strong-input">Fecha de Entrega:</strong>
+                    <input type="date" id="tarea-fecha" class="input-text">
+                    <label for="tarea-recordatorio">Recordatorio:</label>
+                    <label for="tarea-recordatorio-fecha">Recordatorio:</label>
+                    <input type="date" id="tarea-recordatorio-fecha">
+                    <input type="time" id="tarea-recordatorio-hora">
+                    <button id="btn-notificaciones" class="btn-notificar">🔔 Activar Notificaciones</button>
+
+                    <strong class="strong-input">Subtareas (separadas por coma):</strong>
+                    <input type="text" id="tarea-subtareas" class="input-text" placeholder="Subtarea 1, Subtarea 2">
+
+                    <input type="button" class="btn-crear" id="btn-crear-editar" value="Crear tarea" onclick="crearTarea(event)">
+                </div>
+            </div>
+
+            <div class="kanban-block" id="pendientes" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <strong>PENDIENTES</strong>
+            </div>
+
+            <div class="kanban-block" id="proceso" ondrop="drop(event)" ondragover="allowDrop(event)">      
+                <strong>PROCESO</strong>
+            </div>
+
+            <div class="kanban-block" id="completados" ondrop="drop(event)" ondragover="allowDrop(event)">       
+                <strong>COMPLETADOS</strong>
+            </div>
+            <div class="kanban-block" id="terminadas">       
+                <strong>TAREAS TERMINADAS</strong>
+            </div>            
+        </div>
+    </div>
+
+    <div id="confirmModal">
+        <div class="modal-content">
+            <p>¿Estás seguro de que completaste la tarea?</p>
+            <button onclick="confirmarCompletado(true)">Sí</button>
+            <button onclick="confirmarCompletado(false)">No</button>
+        </div>
+    </div>    
+
+    <div id="panel-actividades">
+        <h3>Panel de Actividades</h3>
+        <ul id="lista-actividades"></ul>
+    </div>
+
+    <div id="notificacionModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="cerrarNotificacion()">&times;</span>
+            <h3>Recordatorio</h3>
+            <p id="mensajeNotificacion"></p>
+        </div>
+    </div>
+
+    <script src="JavaScript.js"></script>
+</body>
+</html>
